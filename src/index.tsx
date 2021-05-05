@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import uploadToFirebase from "./uploadToFirebase";
+import {getAcceptedFileTypes, getIsMulti, getRootId} from "./utils";
+
+const id: string = getRootId();
+const acceptedFileTypes: string[] = getAcceptedFileTypes();
+const isMulti: boolean = getIsMulti()
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App multi={isMulti} accept={acceptedFileTypes} onUpload={uploadToFirebase}/>
+    </React.StrictMode>,
+    document.getElementById(id)
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
